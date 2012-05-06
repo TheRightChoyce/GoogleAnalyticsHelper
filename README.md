@@ -1,4 +1,8 @@
 GoogleAnalyticsHelper
 =====================
 
-A jQuery plugin tracking events in google analytics. Also works as a stand-alone script.
+A jQuery plugin/helper for tracking events in google analytics (Can also works as a stand-alone script). 
+
+Basic usage:
+
+`$('#foo').ga('trackClick', { action: 'bar' });`
