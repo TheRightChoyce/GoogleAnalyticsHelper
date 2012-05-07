@@ -57,31 +57,27 @@ var GoogleAnalyticsHelper = function( elements, method, args, options )
 	},
 	
 	//
-	// Tracks any genric action by accepting a full argument list
-	trackAction: function( args ) {
-		
-		self = this;
-		this.elements.each( function(index, element){
-			self.trackEvent( element, args );
-		});
-		return this;
-	},
-	
-	//
 	// Tracks the click event on an element
 	trackClick: function( args ) 
 	{
-		return this.trackAction( $.extend( args, { 
+		args = $.extend( args, { 
 			category: this.options.clickCategory
 			, eventType: this.options.clickEventType
-		}));
+		});
+		
+		var self = this;	
+		this.elements.each( function(index, element){
+			self.trackEvent( element, args );
+		});
+		
+		return this;
 	},
 	
 	//
 	// Tracks an outgoing link -- args can be null if needed
 	trackClickOutgoing: function( args ) 
 	{
-		self = this;
+		var self = this;
 		args = $.extend( args, {
 			category: this.options.outgoingClickCategory
 			, eventType: this.options.clickEventType
@@ -100,10 +96,17 @@ var GoogleAnalyticsHelper = function( elements, method, args, options )
 	// Tracks an scroll event on a textbox, css fancybox, etc..
 	trackScrollOrFocus: function( args ) 
 	{
-		return this.trackAction( $.extend( args, { 
+		args = $.extend( args, { 
 			category: this.options.scrollFocusCategory
 			, eventType: this.options.clickEventType
-		}));
+
+		});
+		
+		var self = this;	
+		this.elements.each( function(index, element){
+			self.trackEvent( element, args );
+		});		
+		return this;
 	}	
 };
 
